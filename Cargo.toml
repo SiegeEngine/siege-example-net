@@ -1,0 +1,13 @@
+[package]
+name = "siege-example-net"
+version = "0.1.0"
+authors = ["Mike Dilger <mike@optcomp.nz>"]
+description = "Siege Example Game-specific Network Packet Definitions"
+repository = "https://github.com/SiegeEngine/siege-example-net"
+readme = "README.md"
+license = "MIT"
+
+[dependencies]
+serde = "1.0"
+serde_derive = "1.0"
+siege-net = { git = "https://github.com/SiegeEngine/siege-net" }
