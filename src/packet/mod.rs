@@ -1,4 +1,5 @@
 
+use serde::{Serialize, Deserialize};
 pub use siege_net::packets::{Packet,
                              InitPacket, InitAckPacket, UpgradeRequiredPacket,
                              HeartbeatPacket, HeartbeatAckPacket, ShutdownPacket,

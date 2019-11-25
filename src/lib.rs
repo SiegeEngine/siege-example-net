@@ -1,6 +1,5 @@
 
 extern crate siege_net;
-#[macro_use] extern crate serde_derive;
 extern crate serde;
 
 // This randomish 20 bit number (in the high 20 bits; low bits are zero-extended)
