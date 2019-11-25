@@ -26,7 +26,7 @@ fn test() {
     use ring::rand::SystemRandom;
     use bincode::deserialize;
     use super::GamePacket;
-    use ::{MAGIC, VERSION};
+    use crate::{MAGIC, VERSION};
 
     let remote_addr: SocketAddr = FromStr::from_str("0.0.0.0:0").unwrap();
     let mut remote = Remote::new(remote_addr, Arc::new(SystemRandom::new())).unwrap();
