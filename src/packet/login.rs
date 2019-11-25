@@ -22,20 +22,25 @@ fn test() {
     use std::str::FromStr;
     use std::net::SocketAddr;
     use std::sync::Arc;
-    use remote::Remote;
+    use siege_net::Remote;
     use ring::rand::SystemRandom;
-    use super::Packet;
+    use bincode::deserialize;
+    use super::GamePacket;
+    use ::{MAGIC, VERSION};
 
     let remote_addr: SocketAddr = FromStr::from_str("0.0.0.0:0").unwrap();
     let mut remote = Remote::new(remote_addr, Arc::new(SystemRandom::new())).unwrap();
 
     let login_packet = LoginPacket::new("mike".to_string(), "password".to_string());
-    let packet = Packet::Login(login_packet.clone());
-    let mut bytes: Vec<u8> = remote.serialize_packet(&packet).unwrap();
-    let (packet2,_,stale) = remote.deserialize_packet(&mut bytes[..]).unwrap();
+    let packet = GamePacket::Login(login_packet.clone());
+    let mut bytes: Vec<u8> = remote.serialize_packet(&packet, MAGIC, VERSION).unwrap();
+    let (packet2_bytes,_,stale) = remote.deserialize_packet_header::<GamePacket>(
+        &mut bytes[..]
+    ).unwrap();
     assert_eq!(stale,false);
+    let packet2: GamePacket = deserialize(packet2_bytes).unwrap();
     match packet2 {
-        Packet::Login(login_packet2) => {
+        GamePacket::Login(login_packet2) => {
             assert_eq!(login_packet, login_packet2);
         }
         ,

@@ -10,3 +10,5 @@ license = "MIT"
 [dependencies]
 serde = { version = "1.0", features = [ "derive" ] }
 siege-net = { git = "https://github.com/SiegeEngine/siege-net" }
+ring = "0.13"
+bincode = "1.2"

@@ -1,6 +1,8 @@
 
 extern crate siege_net;
 extern crate serde;
+extern crate ring;
+extern crate bincode;
 
 // This randomish 20 bit number (in the high 20 bits; low bits are zero-extended)
 // Used to distinguish siege-net packets from stray packets.
